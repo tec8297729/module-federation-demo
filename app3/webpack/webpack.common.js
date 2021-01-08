@@ -50,9 +50,9 @@ const webpackConfig = {
       template: paths.appHtml,
     }),
     new ModuleFederationPlugin({
-      name: 'appname', // 应用名称 唯一
-      library: { type: 'var', name: 'appname' }, // UMD标准导出，和name保持一致即可。
-      filename: 'remoteEntry.js', // 暴露出去的chunkname
+      name: 'app3',
+      library: { type: 'var', name: 'app3' },
+      filename: 'remoteEntry.js',
       exposes: {},
       shared: {
         react: {
