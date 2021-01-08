@@ -5,7 +5,7 @@ const configName = `./webpack.${isProd ? 'prod' : 'dev'}.js`;
 const webpackExtension_Config = require(`./${configName}`);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('../../app2/webpack/node_modules/webpack/lib/container/ModuleFederationPlugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 const webpackConfig = {
   entry: paths.appIndexJs,
@@ -51,9 +51,19 @@ const webpackConfig = {
     }),
     new ModuleFederationPlugin({
       name: 'appname', // 应用名称 唯一
-      remotes: {},
-      exposes: {},
-      shared: ['react', 'react-dom'], // 与app1共享的依赖，如果app1中有，则会优先使用app1中的依赖。(注：被app1引用)时候会按照app1的/package.json中的版本要求来加载
+      remotes: {
+        app2: 'app2@http://localhost:8877/remoteEntry.js',
+      },
+      shared: {
+        react: {
+          singleton: true, // only a single version of the shared module is allowed
+          eager: true,
+        },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+        },
+      },
     }),
   ],
 };

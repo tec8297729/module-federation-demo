@@ -1,10 +1,10 @@
 {
-  "name": "module-federation-demo",
+  "name": "app3",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env PROT=8877 BUILD_ENV=dev webpack serve",
+    "dev": "cross-env PROT=8883 BUILD_ENV=dev webpack serve",
     "build": "cross-env BUILD_ENV=prod webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
