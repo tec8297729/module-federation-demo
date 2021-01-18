@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "examples:install": "lerna bootstrap",
-    "examples:start": "lerna run dev --parallel",
+    "exp:install": "lerna bootstrap",
+    "exp:start": "lerna run dev --parallel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -9,7 +9,7 @@ module.exports = function (config) {
       disableHostCheck: true,
       historyApiFallback: true,
       compress: true,
-      open: true,
+      open: false,
       port: config.PROT || 8999,
       hot: true,
     },

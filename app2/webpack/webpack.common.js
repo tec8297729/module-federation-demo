@@ -37,7 +37,14 @@ const webpackConfig = {
               esModule: true,
             },
           },
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]_[contenthash:8]',
+              },
+            },
+          },
           'less-loader',
         ],
       },
@@ -53,7 +60,10 @@ const webpackConfig = {
       name: 'app2', // 应用名称 唯一
       library: { type: 'var', name: 'app2' },
       filename: 'remoteEntry.js',
-      exposes: {},
+      // 导出组件
+      exposes: {
+        './BtnEs': './src/components/BtnEs',
+      },
       shared: {
         react: {
           singleton: true, // only a single version of the shared module is allowed

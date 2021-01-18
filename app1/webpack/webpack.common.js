@@ -6,6 +6,7 @@ const webpackExtension_Config = require(`./${configName}`);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const deps = require('../package.json').dependencies;
 
 const webpackConfig = {
   entry: paths.appIndexJs,
@@ -37,14 +38,21 @@ const webpackConfig = {
               esModule: true,
             },
           },
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]_[contenthash:8]',
+              },
+            },
+          },
           'less-loader',
         ],
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({}),
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
@@ -52,16 +60,19 @@ const webpackConfig = {
     new ModuleFederationPlugin({
       name: 'appname', // 应用名称 唯一
       remotes: {
-        app2: 'app2@http://localhost:8877/remoteEntry.js',
+        app2: 'app2@http://localhost:8882/remoteEntry.js',
       },
       shared: {
+        ...deps,
         react: {
-          singleton: true, // only a single version of the shared module is allowed
-          eager: true,
+          singleton: true, // 只允许共享模块的单一版本
+          eager: true, // 即时依赖
+          // requiredVersion: deps.react,
         },
         'react-dom': {
           singleton: true,
           eager: true,
+          requiredVersion: deps['react-dom'],
         },
       },
     }),
