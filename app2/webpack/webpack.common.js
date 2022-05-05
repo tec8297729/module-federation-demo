@@ -1,3 +1,10 @@
+/*
+ * @Author: zqzhan
+ * @Date: 2022-05-05 22:49:15
+ * @LastEditors: zqzhan
+ * @LastEditTime: 2022-05-05 23:23:11
+ * @Description: 
+ */
 const paths = require('./paths');
 const { merge } = require('webpack-merge');
 const isProd = ['prod'].includes(process.env.BUILD_ENV);
@@ -63,6 +70,7 @@ const webpackConfig = {
       // 导出组件
       exposes: {
         './BtnEs': './src/components/BtnEs',
+        './BtnPm': './src/components/BtnPm',
       },
       shared: {
         react: {

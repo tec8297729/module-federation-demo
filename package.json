@@ -2,10 +2,9 @@
   "name": "module-federation-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "exp:install": "lerna bootstrap",
-    "exp:start": "lerna run dev --parallel",
+    "start": "lerna run dev --parallel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +18,6 @@
   },
   "homepage": "https://github.com/tec8297729/module-federation-demo#readme",
   "dependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^4.0.0"
   }
 }
