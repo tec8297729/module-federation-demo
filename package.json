@@ -1,23 +1,24 @@
 {
-  "name": "module-federation-demo",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "exp:install": "lerna bootstrap",
-    "start": "lerna run dev --parallel",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tec8297729/module-federation-demo.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tec8297729/module-federation-demo/issues"
-  },
-  "homepage": "https://github.com/tec8297729/module-federation-demo#readme",
-  "dependencies": {
-    "lerna": "^4.0.0"
-  }
+	"name": "module-federation-demo",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"exp:install": "lerna bootstrap",
+		"start": "lerna run dev --parallel",
+		"build": "lerna run build --parallel",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tec8297729/module-federation-demo.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/tec8297729/module-federation-demo/issues"
+	},
+	"homepage": "https://github.com/tec8297729/module-federation-demo#readme",
+	"dependencies": {
+		"lerna": "^4.0.0"
+	}
 }

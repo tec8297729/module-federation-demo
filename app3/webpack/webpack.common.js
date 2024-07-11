@@ -19,6 +19,7 @@ const webpackConfig = {
 	output: {
 		path: paths.appBuild,
 		filename: "[name].js",
+		publicPath: "http://127.0.0.1:8080/build/",
 	},
 	module: {
 		rules: [
@@ -64,22 +65,22 @@ const webpackConfig = {
 			template: paths.appHtml,
 		}),
 		new ModuleFederationPlugin({
-			name: "app2", // 应用名称 唯一
-			library: { type: "var", name: "app2" },
+			name: "app3", // 应用名称 唯一
+			library: { type: "var", name: "app3" },
 			filename: "remoteEntry.js",
 			// 导出组件
 			exposes: {
+				"./BtnEsReactRender": "./src/components/BtnEsReactRender",
 				"./BtnEs": "./src/components/BtnEs",
-				"./BtnPm": "./src/components/BtnPm",
 			},
 			shared: {
 				react: {
-					singleton: true, // only a single version of the shared module is allowed
-					eager: true,
+					singleton: true,
+					requiredVersion: false,
 				},
 				"react-dom": {
 					singleton: true,
-					eager: true,
+					requiredVersion: false,
 				},
 			},
 		}),
