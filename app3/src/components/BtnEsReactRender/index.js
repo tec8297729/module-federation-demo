@@ -7,16 +7,28 @@
  */
 import React from "react";
 import ReactDOM from "react-dom";
+import { Modal, Button } from "@hose/eui";
+import { ConfigTheme } from "@hose/eui-theme";
+
+const theme = new ConfigTheme();
+theme.config({ prefix: "eui", platform: "eui" });
 
 const BtnEsReactRender = (props) => {
 	console.log("app3组件接收到的参数：", props);
 	const onClick = () => {
-		console.log("app3 > hello");
+		document.body.setAttribute("theme-platform", "eui");
+		Modal.confirm({
+			title: "确定要提交吗？",
+			centered: true,
+			onOk: async () => {
+				console.log("app3 > hello");
+			},
+		});
 	};
 
 	ReactDOM.render(
-		<div>
-			<button onClick={onClick}>打印输出（app3 BtnEsReactRender组件）</button>
+		<div theme-platform="eui">
+			<Button onClick={onClick}>打印输出（app3 BtnEsReactRender组件）</Button>
 		</div>,
 		document.getElementById("root"),
 	);

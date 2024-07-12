@@ -56,6 +56,19 @@ const webpackConfig = {
 					"less-loader",
 				],
 			},
+			{
+				test: /\.(c|le)ss?$/,
+				exclude: [paths.appSrc],
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					{
+						loader: "css-loader",
+					},
+					"less-loader",
+				],
+			},
 		],
 	},
 	plugins: [
@@ -66,7 +79,7 @@ const webpackConfig = {
 		}),
 		new ModuleFederationPlugin({
 			name: "app3", // 应用名称 唯一
-			library: { type: "var", name: "app3" },
+			// library: { type: "var", name: "app3" },
 			filename: "remoteEntry.js",
 			// 导出组件
 			exposes: {
@@ -76,15 +89,23 @@ const webpackConfig = {
 			shared: {
 				react: {
 					singleton: true,
-					requiredVersion: false,
+					// eager: true,
 				},
 				"react-dom": {
 					singleton: true,
-					requiredVersion: false,
+					// eager: true,
 				},
 			},
 		}),
 	],
+	resolve: {
+		alias: {
+			react: "preact/compat",
+			"react-dom/test-utils": "preact/test-utils",
+			"react-dom": "preact/compat", // Must be below test-utils
+			"react/jsx-runtime": "preact/jsx-runtime",
+		},
+	},
 };
 
 module.exports = merge(

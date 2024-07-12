@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>app2</title>
+  <title>app3</title>
   <!-- <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> -->
   <!-- <script defer src="./build/main.js"></script> -->
@@ -16,13 +16,14 @@
   <div id="root"></div>
   <!-- 非webpack环境 -->
   <script>
+    const shareScope = {}
     async function loadRemoteModule(remoteName, moduleName) {
       return new Promise((resolve, reject) => {
         const interval = setInterval(() => {
           if (window[remoteName]) {
             clearInterval(interval);
             const container = window[remoteName];
-            container.init({}); // 模拟初始化
+            container.init(shareScope);
             container.get(moduleName)
               .then(factory => {
                 const Module = factory();
@@ -43,6 +44,7 @@
       try {
         const BtnEs = await loadRemoteModule('app3', './BtnEsReactRender');
         const element = BtnEs.default();
+        console.log(shareScope, 'shareScope');
       } catch (error) {
         console.error('Error loading remote component:', error);
       }
